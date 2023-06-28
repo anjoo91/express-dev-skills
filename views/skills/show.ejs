@@ -12,7 +12,7 @@
   <p>Name: <%= skill.name %></p>
   <p>Need: <%= skill.need ? 'Yes' : 'No' %></p>
   
-  <form action="/skills/<%= skill.id %>?_method=DELETE" method="POST"> <!-- Use method override to simulate DELETE request -->
+  <form action="/skills/<%= skill.id %>?_method=DELETE" method="POST">
     <button type="submit">Delete Skill</button>
   </form>
 </body>
