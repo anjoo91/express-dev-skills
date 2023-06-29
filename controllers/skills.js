@@ -5,7 +5,9 @@ module.exports = {
   new: showNewForm, //assigning new to showNewForm; avoids error for special nanmes
   create,
   show,
-  delete: deleteSkill //assigning delete to deleteSkill; avoids error for special names
+  delete: deleteSkill, //assigning delete to deleteSkill; avoids error for special names
+  edit: showEditForm,
+  update,
 };
 
 //show all elements of skills array on /skills
@@ -56,4 +58,30 @@ function deleteSkill(req, res) {
 
 function generateUniqueId() {
   return Date.now().toString();
+}
+
+//render edit form
+function showEditForm(req, res) {
+  const skillId = req.params.id;
+  const skill = skills.getSkillById(skillId);
+
+  if (skill) {
+    res.render('skills/edit', { skill }); // render edit.ejs with skill data
+  } else {
+    res.status(404).send('Skill not found');
+  }
+}
+
+//replace relevant values of array
+function update(req, res) {
+  const skillId = req.params.id;
+  const updatedSkill = {
+    id: skillId,
+    name: req.body.name,
+    need: req.body.need === 'on' ? true : false
+  };
+
+  skills.update(skillId, updatedSkill); // calling update() models/skill.js
+
+  res.redirect('/skills');
 }

@@ -12,6 +12,8 @@
   <p>Name: <%= skill.name %></p>
   <p>Need: <%= skill.need ? 'Yes' : 'No' %></p>
   
+  <a href="/skills/<%= skill.id %>/edit">Edit Skill</a>
+
   <form action="/skills/<%= skill.id %>?_method=DELETE" method="POST">
     <button type="submit">Delete Skill</button>
   </form>

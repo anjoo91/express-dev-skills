@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Skill</title>
+</head>
+<body>
+  <h1>Edit Skill</h1>
+  
+  <form action="/skills/<%= skill.id %>?_method=PUT" method="POST"> <!-- Update the form action to use PUT method -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<%= skill.name %>" required>
+    <label for="need">Needed:</label>
+    <input type="checkbox" id="need" name="need" <%= skill.need ? 'checked' : '' %>> <!-- Check the checkbox if needed -->
+    <button type="submit">Update Skill</button>
+  </form>
+</body>
+</html>

@@ -13,6 +13,7 @@ module.exports = {
   add, // function to 'add' new skills
   getSkillById, // function to identify skills by ID
   remove, // function to 'remove' old skills
+  update,
 };
 
 //get all elements of array
@@ -35,5 +36,14 @@ function remove(skillId) {
   const index = skills.findIndex(skill => skill.id.toString() === skillId.toString());
   if (index !== -1) {
     skills.splice(index, 1);
+  }
+}
+
+//update skill in array based on index of :id
+function update(skillId, updatedSkill) {
+  const skillIndex = skills.findIndex(skill => skill.id.toString() === skillId.toString());
+
+  if (skillIndex !== -1) {
+    skills[skillIndex] = updatedSkill;
   }
 }
