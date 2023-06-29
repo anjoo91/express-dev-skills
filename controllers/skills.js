@@ -2,22 +2,25 @@ const skills = require('../models/skill');
 
 module.exports = {
   index,
-  new: showNewForm,
+  new: showNewForm, //assigning new to showNewForm; avoids error for special nanmes
   create,
   show,
-  delete: deleteSkill
+  delete: deleteSkill //assigning delete to deleteSkill; avoids error for special names
 };
 
+//show all elements of skills array on /skills
 function index(req, res) {
   res.render('skills/index', {
     skills: skills.getAll()
   });
 }
 
+//render 'Add New Skill' form on skills/new
 function showNewForm(req, res) {
   res.render('skills/new');
 }
 
+//from form (req.body) create new object & append
 function create(req, res) {
   const newSkill = {
     id: generateUniqueId(),
@@ -30,6 +33,7 @@ function create(req, res) {
   res.redirect('/skills');
 }
 
+//render skill properties on skills/:id
 function show(req, res) {
   const skillId = req.params.id;
   const skill = skills.getSkillById(skillId);
@@ -41,6 +45,7 @@ function show(req, res) {
   }
 }
 
+//remove from skills w/e corresponds with skills/:id
 function deleteSkill(req, res) {
   const skillId = req.params.id;
 
