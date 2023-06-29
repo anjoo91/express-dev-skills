@@ -11,6 +11,7 @@ const skills = [
 module.exports = {
   getAll,
   add, // function to 'add' new skills
+  getSkillById, // function to identify skills by ID
   remove, // function to 'remove' old skills
 };
 
@@ -22,8 +23,12 @@ function add(newSkill) {
   skills.push(newSkill);
 }
 
+function getSkillById(skillId) {
+  return skills.find(skill => skill.id.toString() === skillId.toString());
+}
+
 function remove(skillId) {
-  const index = skills.findIndex(skill => skill.id === skillId);
+  const index = skills.findIndex(skill => skill.id.toString() === skillId.toString());
   if (index !== -1) {
     skills.splice(index, 1);
   }
